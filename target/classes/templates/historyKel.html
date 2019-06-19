@@ -44,16 +44,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr th:each="showkel: ${his}">
-													<td th:text="${showkel.idRelasi}"></td>
-													<td th:text="${showkel.nama}"></td>
-													<td th:text="${showkel.idCabang}"></td>
-													<td th:text="${showkel.alamat}"></td>
-													<td th:text="${showkel.status}"></td>
-													<td th:text="${showkel.isactive}"></td>
-													<td th:text="${showkel.startdt}"></td>
-													<td th:text="${showkel.enddt}"></td>
-												</tr>
 												<tr th:each="showkelompok: ${kelomp}">
 													<td th:text="${showkelompok.idKelompok}"></td>
 													<td th:text="${showkelompok.namaKelompok}"></td>
@@ -63,6 +53,16 @@
 													<td th:text="${showkelompok.isactive}"></td>
 													<td th:text="${showkelompok.startdt}"></td>
 													<td th:text="${showkelompok.enddt}"></td>
+												</tr>
+												<tr th:each="showkel: ${his}">
+													<td th:text="${showkel.idRelasi}"></td>
+													<td th:text="${showkel.nama}"></td>
+													<td th:text="${showkel.namaCabang}"></td>
+													<td th:text="${showkel.alamat}"></td>
+													<td th:text="${showkel.status}"></td>
+													<td th:text="${showkel.isactive}"></td>
+													<td th:text="${showkel.startdt}"></td>
+													<td th:text="${showkel.enddt}"></td>
 												</tr>
 
 											</tbody>

@@ -10,7 +10,7 @@ import com.dianmandiri.entity.HistoryMs;
 public interface HistoryMsRepository extends CrudRepository<HistoryMs, Long> {
 	@Query("SELECT u FROM HistoryMs u WHERE u.page = 'cabang'")
 	public List<HistoryMs> findcabang();
-	@Query("SELECT u FROM HistoryMs u WHERE u.page = 'kelompok'")
+	@Query("SELECT hm, +namaCabang FROM  HistoryMs hm INNER JOIN hm.cabang c ON hm.idCabang=c.idCabang WHERE hm.page = 'kelompok'" )
 	public List<HistoryMs> findkelompok();
 	@Query("SELECT u FROM HistoryMs u WHERE u.page = 'po'")
 	public List<HistoryMs> findpo();

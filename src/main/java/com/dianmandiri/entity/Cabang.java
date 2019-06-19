@@ -26,7 +26,7 @@ public class Cabang implements Serializable {
 	 */
 	private static final long serialVersionUID = -8290204779690313254L;
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_cabang")
 	private Long idCabang;
 	@Column(name = "nama_cabang")
@@ -43,8 +43,11 @@ public class Cabang implements Serializable {
 	@Column(name = "end_dt")
 	private Date enddt;
 	@ManyToMany(targetEntity = Kelompok.class, mappedBy = "idCabang", fetch = FetchType.LAZY)
-	
+
 	private Set<Kelompok> kelompok;
+	@ManyToMany(targetEntity = HistoryMs.class, mappedBy = "idCabang", fetch = FetchType.LAZY)
+
+	private Set<HistoryMs> historyMs;
 
 	public Cabang() {
 

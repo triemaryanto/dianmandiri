@@ -123,10 +123,12 @@ public class KelompokController {
 	public String HistoryCabang(Model model) {
 		List<HistoryMs> history = historyMsService.findkelompok();
 		List<Kelompok> kelompok = keSer.inner();
+		List<Cabang> cab = caSer.getAllCabang();
+		model.addAttribute("ab", cab);
 		model.addAttribute("kelomp", kelompok);
 		model.addAttribute("his", history);
 		model.addAttribute("title", "Kelompok");
-		model.addAttribute("h2", "Data Kelompok");
+		model.addAttribute("h2", "Data Kelompok");		
 		return "historyKel";
 
 	}

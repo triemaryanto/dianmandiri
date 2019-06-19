@@ -39,14 +39,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr th:each="show: ${pos}">
-													<td th:text="${show.idRelasi}"></td>
-													<td th:text="${show.nama}"></td>
-													<td th:text="${show.alamat}"></td>
-													<td th:text="${show.isactive}"></td>
-													<td th:text="${show.startdt}"></td>
-													<td th:text="${show.enddt}"></td>
-												</tr>
 												<tr th:each="show: ${po}">
 													<td th:text="${show.idPo}"></td>
 													<td th:text="${show.namaPo}"></td>
@@ -55,6 +47,15 @@
 													<td th:text="${show.startdt}"></td>
 													<td th:text="${show.enddt}"></td>
 												</tr>
+												<tr th:each="show: ${pos}">
+													<td th:text="${show.idRelasi}"></td>
+													<td th:text="${show.nama}"></td>
+													<td th:text="${show.alamat}"></td>
+													<td th:text="${show.isactive}"></td>
+													<td th:text="${show.startdt}"></td>
+													<td th:text="${show.enddt}"></td>
+												</tr>
+
 											</tbody>
 										</table>
 									</div>
