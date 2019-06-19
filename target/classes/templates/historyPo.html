@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="frag/header :: header"></div>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar-->
+		<div th:replace="frag/navleft :: navleft"></div>
+		<div id="content">
+			<div th:replace="frag/topnav :: navtop"></div>
+			<div id="page-wrapper">
+				<div id="page-inner">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 th:text="${h2}" align="center"></h2>
+						</div>
+					</div>
+					<!-- /. ROW  -->
+					<hr />
+					<div class="alert alert-success" th:if="${succesmessage}">
+						<a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+						<strong th:text="${succesmessage}"></strong>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<!-- KELOMPOK -->
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="table-responsive">
+										<table class="table table-striped table-bordered table-hover"
+											id="dataTables-example">
+											<thead>
+												<tr>
+													<th>Id Po</th>
+													<th>Nama</th>
+													<th>Alamat</th>
+													<th>Isactive</th>
+													<th>Start DATE</th>
+													<th>End Date</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="show: ${pos}">
+													<td th:text="${show.idRelasi}"></td>
+													<td th:text="${show.nama}"></td>
+													<td th:text="${show.alamat}"></td>
+													<td th:text="${show.isactive}"></td>
+													<td th:text="${show.startdt}"></td>
+													<td th:text="${show.enddt}"></td>
+												</tr>
+												<tr th:each="show: ${po}">
+													<td th:text="${show.idPo}"></td>
+													<td th:text="${show.namaPo}"></td>
+													<td th:text="${show.alamatPo}"></td>
+													<td th:text="${show.isactive}"></td>
+													<td th:text="${show.startdt}"></td>
+													<td th:text="${show.enddt}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!--End Advanced Tables -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="frag/footer :: footer"></div>
+</body>
+</html>

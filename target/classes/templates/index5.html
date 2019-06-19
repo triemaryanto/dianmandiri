@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="frag/header :: header"></div>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar-->
+		<div th:replace="frag/navleft :: navleft"></div>		
+		<div id="content">
+			<div th:replace="frag/topnav :: navtop"></div>
+			<div th:replace="frag/home :: home"></div>
+		</div>
+	</div>
+	<div th:replace="frag/footer :: footer"></div>
+</body>
+</html>

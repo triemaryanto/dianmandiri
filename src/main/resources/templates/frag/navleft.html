@@ -1,0 +1,34 @@
+<a th:fragment="navleft">
+	<nav id="sidebar">
+		<ul class="list-unstyled components">
+			<li class="text-center"><img th:src="@{/img/logo.png}"
+				class="user-image img-responsive" /></li>
+			<li class="text-center"><h3>Dian Mandiri</h3></li>
+
+			<li><a href="/">Home</a></li>
+			<li><a href="/cabang">Cabang</a></li>
+			<li><a href="/kelompok">Kelompok</a></li>
+			<li><a href="/po">Program Officer</a></li>
+			<li><a href="/client">Client</a></li>
+			<li><a href="#pageSubmenu" data-toggle="collapse"
+				aria-expanded="false" class="dropdown-toggle 0">History</a>
+				<ul class="collapse list-unstyled" id="pageSubmenu">
+					<li><a href="/cabang/history">Cabang</a></li>
+					<li><a href="/kelompok/history">Kelompok</a></li>
+					<li><a href="/po/history">Program Officer</a></li>
+				</ul></li>
+			<li><a href="#pageSub" data-toggle="collapse"
+				aria-expanded="false" class="dropdown-toggle 1">Kegiatan</a>
+				<ul class="collapse list-unstyled" id="pageSub">
+					<li><a href="/kelompokpo">Kelompok Po</a></li>
+					<li><a href="/orientasi/create">Orientasi</a></li>
+					<li><a href="#">Evaluasi</a></li>
+					<li><a href="#">Realisasi</a></li>
+				</ul></li>
+
+		</ul>
+		<ul class="list-unstyled CTAs">
+			<li><a href="" class="article">Logout</a></li>
+		</ul>
+	</nav>
+</a>

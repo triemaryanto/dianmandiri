@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="frag/header :: header"></div>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar-->
+		<div th:replace="frag/navleft :: navleft"></div>
+		<div id="content">
+			<div th:replace="frag/topnav :: navtop"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2 th:text="${h2}" align="center"></h2>
+				</div>
+			</div>
+			<!-- /. ROW  -->
+			<hr />
+			<div class="row">
+				<div class="col-md-12">
+					<!-- KELOMPOK -->
+					<form th:action="@{${isAdd}?'../saveclient':'../updateclient'}"
+						th:object="${client}" method="post">
+
+						<div class="form-group">
+							<label>Nama</label> <input type="text" class="form-control"
+								th:field="*{namaClient}">
+						</div>
+						<div class="form-group">
+							<label>Jenis Kelamin</label> <select class="form-control"
+								th:field="*{jenisKelamin}" required>
+								<option value="L">Laki - Laki</option>
+								<option value="P">Perempuan</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>NIK</label> <input type="text" class="form-control"
+								th:field="*{noKtp}">
+						</div>
+						<div class="form-group">
+							<label>Alamat</label> <input type="text" class="form-control"
+								th:field="*{alamat}">
+						</div>
+						<div class="form-group">
+							<label>Tanggal Lahir </label>
+							<div class="input-group date" data-date-format="mm-dd-yyyy">
+								<input input type="date" id="datepicker"
+									class="tanggal form-control" th:field="*{tgl}">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label>pendidikan</label> <select class="form-control"
+								th:field="*{pendidikan}">
+								<option value="SD">SD</option>
+								<option value="SMP">SMP</option>
+								<option value="SMA">SMA</option>
+								<option value="DIPLOMA">DIPLOMA</option>
+								<option value="SARJANA">SARJANA</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Jumlah Tanggungan</label> <input type="text"
+								class="form-control" th:field="*{jumlahTanggungan}">
+						</div>
+						<div class="form-group">
+							<label>Jenis Usaha</label> <input type="text"
+								class="form-control" th:field="*{jenisUsaha}">
+						</div>
+						<div class="form-group">
+							<label>Lokasi Usaha</label> <input type="text"
+								class="form-control" th:field="*{lokasiUsaha}">
+						</div>
+						<div class="form-group">
+							<label>Lama Usaha</label> <input type="text" class="form-control"
+								th:field="*{lamaUsaha}">
+						</div>
+						<div class="form-group">
+							<label>Kepemilikan Usaha</label> <input type="text"
+								class="form-control" th:field="*{kepemilikanUsaha}">
+						</div>
+						<div class="form-group">
+							<label>Omset Mingguan</label> <input type="text"
+								class="form-control" th:field="*{omsetMingguan}">
+						</div>
+						<div class="form-group">
+							<input type="hidden" class="form-control" id="idPo"
+								th:field="*{idClient}" readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label>Modal Mingguan</label> <input type="text"
+								class="form-control" th:field="*{modalMingguan}">
+						</div>
+						<div class="form-group">
+							<label>Laba Bersih</label> <input type="text"
+								class="form-control" th:field="*{labaBersihMingguan}">
+						</div>
+						<div class="form-group">
+							<label>Jumlah Tenaga Kerja</label> <input type="text"
+								class="form-control" th:field="*{jmlTenagaKerja}">
+						</div>
+						<div class="form-group">
+							<label>Upah Tenaga Kerja</label> <input type="text"
+								class="form-control" th:field="*{upahTenagaKerja}">
+						</div>
+						<div class="form-group">
+							<label>Pendapatan Keluarga</label> <input type="text"
+								class="form-control" th:field="*{pendapatanKeluarga}">
+						</div>
+						<div class="form-group">
+							<label>Modal Kerja</label> <input type="text"
+								class="form-control" th:field="*{modalKerja}">
+						</div>
+						<div class="form-group">
+							<label>Jumlah Pinjaman Lain</label> <input type="text"
+								class="form-control" th:field="*{jumlahPinjamanLain}">
+						</div>
+						<div class="form-group">
+							<label>Pemberi Pinjaman Lain</label> <input type="text"
+								class="form-control" th:field="*{pemberiPinjamanLain}">
+						</div>
+						<div class="form-group">
+							<label>Pengeluaran Keluarga</label> <input type="text"
+								class="form-control" th:field="*{pengeluaranKeluargaMingguan}">
+						</div>
+						<div class="form-group">
+							<label>Kesehatan Keluarga</label> <select class="form-control"
+								th:field="*{kesehatanKeluarga}">
+								<option value="Sangat Baik">Sangat Baik</option>
+								<option value="Cukup Baik">Cukup Baik</option>
+								<option value="Baik">Baik</option>
+								<option value="Kurang Baik">Kurang Baik</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Nama Penanggung</label> <input type="text"
+								class="form-control" th:field="*{namaPenanggung}">
+						</div>
+						<div class="form-group">
+							<label>Hubungan Penanggung</label> <input type="text"
+								class="form-control" th:field="*{hubPenanggung}">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary"
+								th:text="@{${isAdd}?'Save':'Update'}">Submit</button>
+							<a href="../client" class="btn btn-primary">Cancel</a>
+						</div>
+
+					</form>
+					<!--End Advanced Tables -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="frag/footer :: footer"></div>
+	<script type="text/javascript">
+	 $('.datepicker').datepicker({
+         format: 'mm/dd/yyyy'
+     });
+     function hanyaAngka(evt) {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+             return false;
+         return true;
+     }
+	</script>
+</body>
+</html>

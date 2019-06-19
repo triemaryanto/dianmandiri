@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="frag/header :: header"></div>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar-->
+		<div th:replace="frag/navleft :: navleft"></div>
+		<div id="content">
+			<div th:replace="frag/topnav :: navtop"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2 th:text="${h2}" align="center"></h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">				
+						<!-- KELOMPOK -->
+						<form action="#"
+						th:action="@{${isAdd}?'../savekelo':'../updatekel'}"
+						th:object="${orientasi}" method="post">
+						<div class="form-group">
+							<input type="hidden" class="form-control" id="idPo"
+								th:field="*{idOrientasi}" readonly="readonly">
+						</div>						
+						<div class="form-group">
+							<label> Nama Kelompok</label> <select th:field="*{idKelompok}"
+								class="form-control">
+								<option value="">--</option>
+								<option th:each="show : ${kelompok1}" th:value="${show.idKelompok}"
+									th:text="${show.namaKelompok}"></option>
+							</select>
+						</div>						
+						<div class="form-group">
+							<label>Keterangan</label> <input type="text"
+								class="form-control" id="namaPo" th:field="*{keterangan}">
+
+						</div>
+						<div class="form-group">
+							<label>Isactive</label> <select class="form-control"
+								th:field="*{isactive}" required>
+								<option value="1">Aktiv</option>
+								<option value="0">Tidak Aktiv</option>
+							</select>
+						</div>
+
+						<button type="submit" class="btn btn-primary"
+							th:text="@{${isAdd}?'Save':'Update'}">Submit</button>
+						<a href="../cabang" class="btn btn-primary">Cancel</a>
+					</form>
+						<!--End Advanced Tables -->
+					</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="frag/footer :: footer"></div>
+</body>
+</html>
