@@ -33,7 +33,7 @@ public class Kelompok implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_kelompok")
-	Long idKelompok;
+	private Long idKelompok;
 	@Column(name = "nama_kelompok")
 	String namaKelompok;
 	@Column(name = "id_cabang")
@@ -65,9 +65,12 @@ public class Kelompok implements Serializable {
 	@Fetch(FetchMode.JOIN)
 	private Cabang cabang;
 
-	@ManyToMany(targetEntity = KelompokPo.class, fetch = FetchType.LAZY)
-
+	@ManyToOne(targetEntity = KelompokPo.class, fetch = FetchType.LAZY)
 	private Set<KelompokPo> kelompokPo;
+	
+	@ManyToMany(targetEntity = Orientasi.class, mappedBy = "idKelompok", fetch = FetchType.LAZY)
+	private Set<Orientasi> orientasi;
+	
 
 	public Kelompok() {
 

@@ -55,17 +55,7 @@ public class KelompokController {
 		model.addAttribute("isAdd", true);
 		return "form/formKel";
 	}
-
-	@RequestMapping(value = "/orientasi/create", method = RequestMethod.GET)
-	public String orientasi(Model model) {
-		List<Kelompok> kelompok = keSer.getAllKel();
-		model.addAttribute("kelompok1", kelompok);
-		model.addAttribute("orientasi", new Orientasi());
-		model.addAttribute("title", "Orientasi");
-		model.addAttribute("h2", "Form Orientasi");
-		model.addAttribute("isAdd", true);
-		return "form/formOrientasi";
-	}
+	
 
 	@PostMapping(value = "savekelo")
 	public String saveKelompok(@ModelAttribute Kelompok kelompok, RedirectAttributes redirectAttributes, Model model) {

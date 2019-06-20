@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,7 +30,10 @@ public class KelompokPo implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4979796539926725828L;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	@Id
 	@Column(name = "id_kelompok")
 	Long idKelompok;
@@ -45,7 +49,11 @@ public class KelompokPo implements Serializable {
 	@Column(name = "end_dt")
 	Date enddt;
 	String namaKelompok;
-
+	
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_kelompok", insertable = false, updatable = false)
+	@Fetch(FetchMode.JOIN)
+	private Kelompok kelompok;
 	public String getNamaKelompok() {
 		return namaKelompok=kelompok.getNamaKelompok();
 	}
@@ -53,11 +61,6 @@ public class KelompokPo implements Serializable {
 	public void setNamaKelompok(String namaKelompok) {
 		this.namaKelompok = namaKelompok;
 	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_kelompok", insertable = false, updatable = false)
-	@Fetch(FetchMode.JOIN)
-	private Kelompok kelompok;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_po", insertable = false, updatable = false)
 	@Fetch(FetchMode.JOIN)
