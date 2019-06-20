@@ -45,7 +45,7 @@ public class TrController {
 		Logger logger = LoggerFactory.getLogger(TrController.class);
 		logger.info("ini"+kelompokPo);
 		model.addAttribute("title", "Kelompok");
-		model.addAttribute("h2", "Data Kelompok");
+		model.addAttribute("h2", "tr_kelompok_po");
 		return "kelompok_po";
 	} 
 	@PostMapping(value = "savekelpo")
@@ -81,9 +81,9 @@ public class TrController {
 		List<Po> po = poService.getAllPo();
 		model.addAttribute("po", po);
 		model.addAttribute("kelompok1", kelompok);
-		model.addAttribute("kelompokPo", kelompokPo);
+		model.addAttribute("kelompokpo", kelompokPo);
 		model.addAttribute("title", "Kelompok");
-		model.addAttribute("h2", "Edit Data Kelompok");
+		model.addAttribute("h2", "tr_kelompok_po");
 		model.addAttribute("isAdd", false);
 		return "form/formKelPo";
 	}
@@ -107,8 +107,8 @@ public class TrController {
 		model.addAttribute("orientasi", orientasi);
 		Logger logger = LoggerFactory.getLogger(TrController.class);
 		logger.info("data"+orientasi);
-		model.addAttribute("title", "Kelompok");
-		model.addAttribute("h2", "Data Kelompok");
+		model.addAttribute("title", "Orientasi");
+		model.addAttribute("h2", "Data Orientasi");
 		return "orientasi";
 	} 
 	
