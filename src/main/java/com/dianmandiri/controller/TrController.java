@@ -1,6 +1,5 @@
 package com.dianmandiri.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,31 +15,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dianmandiri.entity.Cabang;
-import com.dianmandiri.entity.HistoryMs;
+import com.dianmandiri.entity.Evaluasi;
 import com.dianmandiri.entity.Kelompok;
 import com.dianmandiri.entity.KelompokPo;
 import com.dianmandiri.entity.Orientasi;
 import com.dianmandiri.entity.Po;
-import com.dianmandiri.service.KelompokPoService;
+import com.dianmandiri.entity.Realisasi;
+import com.dianmandiri.service.TrService;
 import com.dianmandiri.service.PoService;
 import com.dianmandiri.service.kelompok.KelompokService;
 
 @Controller
 public class TrController {
 
-	private static final String Orientasi = null;
 	@Autowired
 	private PoService poService;
 	@Autowired
 	private KelompokService keSer;
 	@Autowired
-	private KelompokPoService kelompokPoService;
+	private TrService trService;
+	
 	
 	/* crud tr_kelompok_po*/
 	@GetMapping("/kelompokpo")
 	public String tableKelPo(Model model) {
-		List<KelompokPo> kelompokPo = kelompokPoService.join();
+		List<KelompokPo> kelompokPo = trService.join();
 		model.addAttribute("post", kelompokPo);
 		Logger logger = LoggerFactory.getLogger(TrController.class);
 		logger.info("ini"+kelompokPo);
@@ -51,7 +50,7 @@ public class TrController {
 	@PostMapping(value = "savekelpo")
 	public String saveKelPo(@ModelAttribute KelompokPo kelompokPo, RedirectAttributes redirectAttributes, Model model) {
 		
-		KelompokPo dbPo = kelompokPoService.save(kelompokPo);
+		KelompokPo dbPo = trService.save(kelompokPo);
 		if (dbPo != null) {
 			redirectAttributes.addFlashAttribute("succesmessage", "Data Berhasil Disimpan");
 			return "redirect:/kelompokpo";
@@ -76,7 +75,7 @@ public class TrController {
 	}
 	@GetMapping(value = "getKelompokPo/{idKelompok}")
 	public String getPo(@PathVariable Long idKelompok, Model model) {
-		KelompokPo kelompokPo = kelompokPoService.findById(idKelompok);
+		KelompokPo kelompokPo = trService.findById(idKelompok);
 		List<Kelompok> kelompok = keSer.getAllKel();
 		List<Po> po = poService.getAllPo();
 		model.addAttribute("po", po);
@@ -89,7 +88,7 @@ public class TrController {
 	}
 	@PostMapping(value = "updatekelpo")
 	public String update(@ModelAttribute KelompokPo kelompokPo,	RedirectAttributes redirectAttributes, Model model) {
-		KelompokPo dbPo = kelompokPoService.save(kelompokPo);
+		KelompokPo dbPo = trService.save(kelompokPo);
 		if (dbPo != null) {
 			redirectAttributes.addFlashAttribute("succesmessage", "Data Berhasil Disimpan");
 			return "redirect:/kelompokpo";
@@ -103,7 +102,7 @@ public class TrController {
 	/*tr_orientasi*/
 	@GetMapping("/orientasi")
 	public String tableorientasi(Model model) {
-		List<Orientasi> orientasi = kelompokPoService.joinOrientasiKelompok();
+		List<Orientasi> orientasi = trService.joinOrientasiKelompok();
 		model.addAttribute("orientasi", orientasi);
 		Logger logger = LoggerFactory.getLogger(TrController.class);
 		logger.info("data"+orientasi);
@@ -124,7 +123,31 @@ public class TrController {
 	
 	@PostMapping(value = "saveorientasi")
 	public String saveOrientai(@ModelAttribute Orientasi orientasi, RedirectAttributes redirectAttributes, Model model) {
-		Orientasi dbPo = kelompokPoService.saveOrientasi(orientasi);
+		Orientasi dbPo = trService.saveOrientasi(orientasi);
+		if (dbPo != null) {
+			redirectAttributes.addFlashAttribute("succesmessage", "Data Berhasil Disimpan");
+			return "redirect:/orientasi";
+		} else {
+			model.addAttribute("errormessage", "Data Progam Officer Tidak Berhasil Di Simpan, Coba Lagi!");
+			model.addAttribute("po", orientasi);
+			return "orientasi";
+		}
+	}
+	@GetMapping(value = "getOrientasi/{idOrientasi}")
+	public String getOrientasi(@PathVariable Long idOrientasi, Model model) {
+		Orientasi orientasi = trService.findByIdOrientasi(idOrientasi);
+		List<Kelompok> kelompok = keSer.getAllKel();
+		model.addAttribute("kelompok", kelompok);
+		model.addAttribute("orientasi", orientasi);
+		model.addAttribute("title", "Kelompok");
+		model.addAttribute("h2", "Orientasi");
+		model.addAttribute("isAdd", false);
+		return "form/formOrientasi";
+	}
+	
+	@PostMapping(value = "updateorientasi")
+	public String updateorientasi(@ModelAttribute Orientasi orientasi,	RedirectAttributes redirectAttributes, Model model) {
+		Orientasi dbPo = trService.saveOrientasi(orientasi);
 		if (dbPo != null) {
 			redirectAttributes.addFlashAttribute("succesmessage", "Data Berhasil Disimpan");
 			return "redirect:/orientasi";
@@ -135,7 +158,59 @@ public class TrController {
 		}
 	}
 	
-	
 	/*end*/
-	
+	/*Evaluasi*/
+	@GetMapping("/evaluasi")
+	public String tableevaluasi(Model model) {
+		List<Evaluasi> evaluasi = trService.joinEvaluasiKelompok();
+		model.addAttribute("evaluasi", evaluasi);
+		model.addAttribute("title", "Orientasi");
+		model.addAttribute("h2", "Data Evaluasi");
+		return "evaluasi";
+	} 
+	@RequestMapping(value = "/eva/create", method = RequestMethod.GET)
+	public String formEvaluasi(Model model) {
+		List<Kelompok> kelompok = keSer.getAllKel();
+		model.addAttribute("kelompok", kelompok);
+		model.addAttribute("evaluasi", new Evaluasi());
+		model.addAttribute("h2", "Evaluasi");
+		model.addAttribute("isAdd", true);
+		return "form/formEvaluasi";
+	}
+	@PostMapping(value = "saveevaluasi")
+	public String saveEvaluasi(@ModelAttribute Evaluasi evaluasi, RedirectAttributes redirectAttributes, Model model) {
+		Evaluasi dbPo = trService.saveEvaluasi(evaluasi);
+		if (dbPo != null) {
+			redirectAttributes.addFlashAttribute("succesmessage", "Data Berhasil Disimpan");
+			return "redirect:/evaluasi";
+		} else {
+			model.addAttribute("errormessage", "Data Progam Officer Tidak Berhasil Di Simpan, Coba Lagi!");
+			model.addAttribute("po", evaluasi);
+			return "evaluasi";
+		}
+	}
+	/*Realisasi*/
+	@GetMapping("/realisasi")
+	public String tablerealisasi(Model model) {
+		List<Realisasi> realisasi = trService.joinRealisasi();
+		model.addAttribute("realisasi", realisasi);
+		model.addAttribute("title", "Realisasi");
+		model.addAttribute("h2", "Realisasi");
+		return "realisasi";
+	} 
+	@RequestMapping(value = "/realisasi/create", method = RequestMethod.GET)
+	public String formRealisasi(Model model) {
+		List<Kelompok> kelompok = keSer.getAllKel();
+		model.addAttribute("kelompok", kelompok);
+		model.addAttribute("realisasi", new Realisasi());
+		model.addAttribute("h2", "Realisasi");
+		model.addAttribute("isAdd", true);
+		return "form/formRealisasi";
+	}
+	/*Kewajiban*/
+	@GetMapping("/kewajiban")
+	public String tablekewajiban(Model model) {
+		model.addAttribute("h2", "Kewajiban");
+		return "kewajiban";
+	} 
 }

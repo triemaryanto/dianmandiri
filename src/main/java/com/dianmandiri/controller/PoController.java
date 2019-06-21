@@ -7,8 +7,6 @@ package com.dianmandiri.controller;
 
 import com.dianmandiri.entity.Po;
 import com.dianmandiri.entity.HistoryMs;
-import com.dianmandiri.entity.HistoryPo;
-import com.dianmandiri.service.HistoryService;
 import com.dianmandiri.service.PoService;
 import com.dianmandiri.service.historyms.HistoryMsService;
 
@@ -31,8 +29,6 @@ public class PoController {
 	@Autowired
 	private PoService poService;
 
-	@Autowired
-	private HistoryService poSer;
 	@Autowired 
 	private HistoryMsService historyMsService;
 
@@ -87,9 +83,6 @@ public class PoController {
 	public String getPo(@PathVariable Long idPo, Model model) {
 		Po po = poService.findById(idPo);
 		List<Po> pos = poService.getAllPo();
-		// po.setIsactive(0);
-		// po.setEnddt(new Date());
-		Po dbPo = poService.save(po);
 		model.addAttribute("pos", pos);
 		model.addAttribute("po", po);
 		model.addAttribute("title", "Program Officer");

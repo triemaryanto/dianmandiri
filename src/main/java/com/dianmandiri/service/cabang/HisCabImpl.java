@@ -15,8 +15,6 @@ import com.dianmandiri.repository.HisCabRepository;
 @Transactional
 public class HisCabImpl implements HisCabService {
 
-	private static final long serialVersionUID = 1L;
-	
 	@Autowired
 	private HisCabRepository hisRepo;	
 	

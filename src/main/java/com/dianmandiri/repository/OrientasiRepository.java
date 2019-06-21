@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.dianmandiri.entity.Kelompok;
 import com.dianmandiri.entity.Orientasi;
 
 public interface OrientasiRepository extends CrudRepository<Orientasi, Long> {

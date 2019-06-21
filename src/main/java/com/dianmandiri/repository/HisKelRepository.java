@@ -7,8 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.dianmandiri.entity.HistoryKelompok;
-import com.dianmandiri.entity.Kelompok;
-import com.dianmandiri.entity.Po;
 
 @Repository
 public interface HisKelRepository extends CrudRepository<HistoryKelompok, Long>{

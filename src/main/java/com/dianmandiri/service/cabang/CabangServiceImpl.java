@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dianmandiri.entity.Cabang;
-import com.dianmandiri.entity.Po;
 import com.dianmandiri.repository.CabangRepository;
 
 @Service

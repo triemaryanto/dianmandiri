@@ -22,6 +22,7 @@
 						<strong th:text="${succesmessage}"></strong>
 					</div>
 					<a class="btn btn-outline-primary" href="/orientasi/create">Tambah Data</a>
+					<a class="btn btn-outline-primary" href="/orientasi/history">History</a>
 					<hr />
 					<div class="row">
 						<div class="col-md-12">
@@ -47,7 +48,7 @@
 													<td th:text="${showkelompok.isactive}"></td>
 													<td th:text="${showkelompok.startdt}"></td>
 													<td align="center"><a
-														th:href="@{'getKelompokPo/'+${showkelompok.idOrientasi}}"><i
+														th:href="@{'getOrientasi/'+${showkelompok.idOrientasi}}"><i
 															class="fa fa-edit" style="font-size: 21px;"
 															onclick="return true"></i></a></td>
 												</tr>

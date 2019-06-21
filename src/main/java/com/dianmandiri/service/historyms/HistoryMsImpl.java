@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dianmandiri.entity.HistoryMs;
-import com.dianmandiri.entity.HistoryPo;
 import com.dianmandiri.repository.HistoryMsRepository;
 
 @Service

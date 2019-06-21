@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -68,8 +70,14 @@ public class Kelompok implements Serializable {
 	@ManyToOne(targetEntity = KelompokPo.class, fetch = FetchType.LAZY)
 	private Set<KelompokPo> kelompokPo;
 	
-	@ManyToMany(targetEntity = Orientasi.class, mappedBy = "idKelompok", fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Orientasi.class, mappedBy = "idKelompok", fetch = FetchType.LAZY)
 	private Set<Orientasi> orientasi;
+	
+	@OneToMany(targetEntity = Evaluasi.class, mappedBy = "idKelompok", fetch = FetchType.LAZY)
+	private Set<Evaluasi> evaluasi;
+	
+	@OneToMany(targetEntity = Evaluasi.class, mappedBy = "idKelompok", fetch = FetchType.LAZY)
+	private Set<Realisasi> realisasi;
 	
 
 	public Kelompok() {

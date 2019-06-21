@@ -17,10 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dianmandiri.entity.Cabang;
 import com.dianmandiri.entity.HistoryCabang;
 import com.dianmandiri.entity.HistoryMs;
-import com.dianmandiri.entity.HistoryPo;
-import com.dianmandiri.entity.Po;
 import com.dianmandiri.service.cabang.CabangService;
-import com.dianmandiri.service.cabang.HisCabService;
 import com.dianmandiri.service.historyms.HistoryMsService;
 
 @Controller
@@ -83,9 +80,7 @@ public class CabangController {
 	}
 	@PostMapping(value = "updatecab")
 	public String update(@ModelAttribute Cabang cabang, HistoryCabang hiscab, HistoryMs historyMs, RedirectAttributes redirectAttributes, Model model) {	
-		Cabang datasebelum = cabangService.findById(cabang.getIdCabang());			
-		Cabang OldPo = cabangService.findidCabang().get(0);
-		Long idPo = OldPo.getIdCabang();
+		Cabang datasebelum = cabangService.findById(cabang.getIdCabang());
 		historyMs.setIdCabang(null);
 		historyMs.setPage("cabang");
 		historyMs.setIdRelasi(cabang.getIdCabang());

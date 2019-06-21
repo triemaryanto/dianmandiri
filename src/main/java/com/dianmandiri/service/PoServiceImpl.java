@@ -8,18 +8,12 @@ package com.dianmandiri.service;
 import com.dianmandiri.entity.Po;
 import com.dianmandiri.repository.PoRepository;
 
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Temporal;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

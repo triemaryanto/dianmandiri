@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import com.dianmandiri.entity.Cabang;
-import com.dianmandiri.entity.Po;
 @Repository
 public interface CabangRepository extends CrudRepository<Cabang, Long>{
 	@Query("SELECT u FROM Cabang u WHERE u.isactive = 1")

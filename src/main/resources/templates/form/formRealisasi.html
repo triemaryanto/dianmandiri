@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="frag/header :: header"></div>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar-->
+		<div th:replace="frag/navleft :: navleft"></div>
+		<div id="content">
+			<div th:replace="frag/topnav :: navtop"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2 th:text="${h2}" align="center"></h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- KELOMPOK -->
+					<form action="#"
+						th:action="@{${isAdd}?'../saveorientasi':'../updateorientasi'}"
+						th:object="${realisasi}" method="post">
+						<div class="form-group">
+							<input type="hidden" class="form-control"
+								th:field="*{idRealisasi}" readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label> Nama Kelompok</label> <select th:field="*{idKelompok}"
+								class="form-control">
+								<option value="">--</option>
+								<option th:each="show : ${kelompok}"
+									th:value="${show.idKelompok}" th:text="${show.namaKelompok}"></option>
+							</select>
+						</div>
+						<div class="form-group shadow-textarea">
+							<label>Periode</label>
+							<textarea class="form-control z-depth-1" rows="3"
+								placeholder="Write something here..." th:field="*{periode}"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Hari Pembayaran</label> <select class="form-control"
+								th:field="*{hariPembayaran}" required>
+								<option value="Senin">Senin</option>
+								<option value="Selasa">Selasa</option>
+								<option value="Rabu">Rabu</option>
+								<option value="Kamis">Kamis</option>
+								<option value="Jumat">Jumat</option>
+							</select>
+							<div class="form-group">
+								<label>Jatuh Tempo</label> <input type="text"
+									class="form-control" th:field="*{jatuhTempo}">
+							</div>
+							<div class="form-group">
+								<label>Jumlah Budget</label> <input type="text"
+									class="form-control"  th:field="*{jumlahBudget}">
+							</div>
+							<div class="form-group">
+								<label>Jumlah Realisasi</label> <input type="text"
+									class="form-control"  th:field="*{jumlahRealisasi}">
+							</div>
+							<div class="form-group">
+								<label>Alasan Persetujuan</label> <input type="text"
+									class="form-control"  th:field="*{alasanPersetujuan}">
+							</div>
+							<div class="form-group">
+							<label>Status</label> <select class="form-control"
+								th:field="*{status}" required>
+								<option value="Cair">Cair</option>
+								<option value="Belum Cair">Belum Cair</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Isactive</label> <select class="form-control"
+								th:field="*{isactive}" required>
+								<option value="1">Aktiv</option>
+								<option value="0">Tidak Aktiv</option>
+							</select>
+						</div>
+
+						<button type="submit" class="btn btn-primary"
+							th:text="@{${isAdd}?'Save':'Update'}">Submit</button>
+						<a href="../realisasi" class="btn btn-primary">Cancel</a>
+					</form>
+					<!--End Advanced Tables -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="frag/footer :: footer"></div>
+</body>
+</html>

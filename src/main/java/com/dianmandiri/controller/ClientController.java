@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.dianmandiri.entity.Cabang;
 import com.dianmandiri.entity.Client;
 import com.dianmandiri.service.client.ClientService;
 

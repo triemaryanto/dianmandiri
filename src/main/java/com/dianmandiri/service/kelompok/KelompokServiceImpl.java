@@ -17,7 +17,6 @@ import com.dianmandiri.repository.KelompokRepository;
 @Transactional
 public class KelompokServiceImpl implements KelompokService {
 	String namaCabang;
-	private Cabang cabang;
     
 	@Autowired
 	private KelompokRepository kelompokRepository;
